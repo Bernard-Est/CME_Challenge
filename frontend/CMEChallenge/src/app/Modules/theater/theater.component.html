@@ -1,0 +1,28 @@
+<section class="container">
+	<h1 style="display: flex; justify-content: center; padding-bottom: 15px;">Theaters</h1>
+	<!-- List Items -->
+	<ul class="task-items">
+		
+		<!-- List Item -->
+		<li class="item type1" *ngFor="let x of Theaters">
+			<div class="task">
+				<div class="icon"> </div>
+			</div>
+
+			<div class="status">
+				<div class="icon off"> </div>
+				
+				<div class="text"> {{x.name}} </div>
+			</div>
+
+			<div class="priority">
+				<div class="bar" style="display: flex; justify-content: center;"> {{x.nbSeats}} seats</div>
+			</div>
+
+			<div>
+				<button mat-raised-button color="primary" (click)="GoPlaysOfThisTheater(x.theaterId)">Go to Plays</button>
+			</div>
+		</li>
+	</ul>
+
+</section>

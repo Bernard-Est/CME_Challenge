@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col col-lg-4 divs" *ngFor="let entry of data" style="border: 1px solid black;">
+            <div class="container entry_section">
+                <form fxLayout="column" #f="ngForm">
+
+                    <mat-form-field>
+                        <input matInput placeholder="Seat" type="text" name="name" [(ngModel)]="entry.seat.name" disabled/>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select placeholder="Status" [(value)]='entry.statusId'><mat-option>Choose</mat-option><mat-option *ngFor='let s of Statuses' [value]='s.statusId'>{{s.type}}</mat-option></mat-select> 
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Description" type="text" name="description" [(ngModel)]="entry.description" disabled/>
+                    </mat-form-field>
+                    <div class="row">
+                        <div class="col col-md-12">
+                            <button mat-raised-button color="primary" type="button"
+                                class="btn btn-outline-secondary btn-block" (click)="UpdateReser(entry)">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>  
+    </div>
+</div>

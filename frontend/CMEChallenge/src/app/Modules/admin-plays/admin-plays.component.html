@@ -1,0 +1,50 @@
+<div class="container padding container_actions">
+    <div class="d-flex justify-content-between">
+        <div class="row">
+            <div class="col col-12">
+                <button type="button" class="btn btn-outline-success" (click)="AddEntry()" style="display: flex; justify-content: flex-end;">
+                    <span>New Play</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="padding: 10px">
+    <div class="row">
+        <div class="col col-lg-4 divs" *ngFor="let entry of data">
+            <div class="container entry_section">
+                <form fxLayout="column" #f="ngForm">
+                    <mat-form-field>
+                        <input matInput placeholder="Name" type="text" name="name" [(ngModel)]="entry.name" required />
+                        <mat-error>Play name is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Description" type="text" name="description"
+                            [(ngModel)]="entry.description" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="TheaterId" type="number" min=1 name="theaterId"
+                            [(ngModel)]="entry.theaterId" />
+                    </mat-form-field>
+                    <!-- <mat-form-field>
+                        <mat-select placeholder="Theater" [(value)]='entry.theaterId'><mat-option>Choose</mat-option><mat-option *ngFor='let Entry of TheaterList' [value]='Entry.theaterId'>{{Entry.name}}</mat-option></mat-select> 
+                    </mat-form-field> -->
+                    <div class="row">
+                        <div class="col col-md-6">
+                            <button [disabled]="!f.valid" mat-raised-button color="primary" type="button"
+                                class="btn btn-outline-secondary btn-block" (click)="Edit(entry)">
+                                Add
+                            </button>
+                        </div>
+                        <div class="col col-md-6">
+                            <button mat-raised-button color="warn" type="button"
+                                class="btn btn-outline-danger btn-block" (click)="Delete(entry)">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>  
+    </div>
+</div>

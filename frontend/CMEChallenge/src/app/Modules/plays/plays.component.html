@@ -1,0 +1,15 @@
+<div style="display: flex; justify-content: center; padding-top: 10px;">
+  <h1>Plays</h1>
+</div>
+<div class="container">
+  <div class="row" class="col col-4"  *ngFor="let x of Playss" style="display: inline-block; padding:20px">
+    <div class="poster">
+      <div class="poster__img"></div>
+      <div class="poster__info">
+        <h1 class="poster__title">{{x.name}}</h1>
+        <p class="poster__text">{{x.description}}</p>
+      </div>
+      <a (click)="GoToReservation(x.playsId)" style="cursor: pointer;">Reserve your seat</a>
+    </div>
+  </div>
+</div>

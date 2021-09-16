@@ -1,0 +1,10 @@
+<div class="header">
+  <h1>Seats</h1>
+</div>
+
+<div style="margin: 20px; display: inline-block;" *ngFor="let x of Seatss">
+  <span class="seat" [ngStyle]="{'background-color':x.available == true ? 'white' : 'gray' }" [ngClass]="x.status | color"
+    style="cursor: pointer;" (click)="Reserve(x)">
+    <p class="naming">{{x.name}}</p>
+  </span>
+</div>

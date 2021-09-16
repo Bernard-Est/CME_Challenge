@@ -1,0 +1,29 @@
+.seat{
+    border:1px solid black; 
+    display: inline-block;  
+    width: 100px;
+    height: 100px;
+}
+
+.header{
+    display: flex; 
+    justify-content: center; 
+    padding-top: 10px; 
+    margin-bottom: 100px;
+}
+
+.naming{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.orange{
+    background-color: orange !important;
+}
+.red{
+    background-color: red !important;
+}
+.green{
+    background-color: green !important;
+}
