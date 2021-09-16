@@ -22,18 +22,18 @@
                         <input matInput placeholder="Description" type="text" name="description"
                             [(ngModel)]="entry.description" />
                     </mat-form-field>
-                    <mat-form-field>
+                    <!-- <mat-form-field>
                         <input matInput placeholder="TheaterId" type="number" min=1 name="theaterId"
                             [(ngModel)]="entry.theaterId" />
-                    </mat-form-field>
-                    <!-- <mat-form-field>
-                        <mat-select placeholder="Theater" [(value)]='entry.theaterId'><mat-option>Choose</mat-option><mat-option *ngFor='let Entry of TheaterList' [value]='Entry.theaterId'>{{Entry.name}}</mat-option></mat-select> 
                     </mat-form-field> -->
+                    <mat-form-field>
+                        <mat-select placeholder="Theater" [(value)]='entry.theaterId' name="theaterId" ><mat-option>Choose</mat-option><mat-option *ngFor='let t of TheaterList' [value]='t.theaterId'>{{t.name}}</mat-option></mat-select> 
+                    </mat-form-field>
                     <div class="row">
                         <div class="col col-md-6">
                             <button [disabled]="!f.valid" mat-raised-button color="primary" type="button"
                                 class="btn btn-outline-secondary btn-block" (click)="Edit(entry)">
-                                Add
+                                Save
                             </button>
                         </div>
                         <div class="col col-md-6">

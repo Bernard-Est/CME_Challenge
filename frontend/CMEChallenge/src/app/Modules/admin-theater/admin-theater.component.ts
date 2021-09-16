@@ -45,27 +45,33 @@ export class AdminTheaterComponent implements OnInit {
       // }
     }
     const record = new Theater();
-    record.TheaterId;
+    record.theaterId;
     this.data.unshift(record);
   }
 
   Edit(theaterObj: Theater) {
-
-    this.theater.EditTheater(theaterObj).subscribe((result) => {
-      if (result != null) {
-        console.log("theater Done")
-        this.toastr.showSuccess("Succefully added!")
-        this.data.splice(this.data.indexOf(theaterObj), 1);
-        const newEntry: any = result;
-        this.data.unshift(newEntry);
-      }
-    });
+    debugger
+    if(theaterObj.theaterId){
+      this.theater.UpdateTheater(theaterObj).subscribe(d=>{
+        this.toastr.showSuccess("Updated")
+      })
+    }else{
+      this.theater.EditTheater(theaterObj).subscribe((result) => {
+        if (result != null) {
+          console.log("theater Done")
+          this.toastr.showSuccess("Succefully added!")
+          this.data.splice(this.data.indexOf(theaterObj), 1);
+          const newEntry: any = result;
+          this.data.unshift(newEntry);
+        }
+      });
+    }
   }
 
   Delete(theater: Theater) {
     if(theater != null){
       this.theater.DeleteTheater(theater).subscribe(d =>{
-        console.log("Theater of id: "+ theater.TheaterId + " is deleted")
+        console.log("Theater of id: "+ theater.theaterId + " is deleted")
         this.toastr.showSuccess("Succefully Deleted!")
       });
     }

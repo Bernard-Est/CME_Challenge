@@ -19,15 +19,18 @@
                         <mat-error>Play name is required</mat-error>
                     </mat-form-field>
                         <mat-checkbox class="example-margin" name="available" [(ngModel)]="entry.available" >Available</mat-checkbox>
-                    <mat-form-field>
+                    <!-- <mat-form-field>
                         <input matInput placeholder="playsId" type="number" min=1 name="playsId"
                             [(ngModel)]="entry.playsId" />
+                    </mat-form-field> -->
+                    <mat-form-field>
+                        <mat-select placeholder="Play" [(value)]='entry.playsId' name="playsId" ><mat-option>Choose</mat-option><mat-option *ngFor='let t of playsList' [value]='t.playsId'>{{t.name}}</mat-option></mat-select> 
                     </mat-form-field>
                     <div class="row">
                         <div class="col col-md-6">
                             <button [disabled]="!f.valid" mat-raised-button color="primary" type="button"
                                 class="btn btn-outline-secondary btn-block" (click)="Edit(entry)">
-                                Add
+                                Save
                             </button>
                         </div>
                         <div class="col col-md-6">

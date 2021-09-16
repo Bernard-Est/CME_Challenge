@@ -40,6 +40,13 @@ export class PlaysService {
     return this.api.post<any>(this.url,plays, options)
   }
 
+  UpdatePlays(plays: Plays): Observable<Plays> {
+    this.url = this.APIBaseUrl + '/UpdatePlays'
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json'})
+    const options = { headers: headers };
+    return this.api.put<Plays>(this.url,plays, options)
+  }
+
 }
 export class Plays {
   playsId!: number;

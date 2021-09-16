@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
                 var list = await _service.GetAll();
                 return Ok(list);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return NotFound(ex.Message);
             }
@@ -48,31 +48,46 @@ namespace WebAPI.Controllers
 
                 return NotFound();
             }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+
+        }
+
+        [HttpPost("EditTheater")]
+        public async Task<IActionResult> EditTheater(Theater theater)
+        {
+            try
+            {
+                var created = await _service.Edit(theater);
+                if (!created)
+                    return NotFound();
+
+                return Ok(theater);
+            }
             catch(Exception ex)
             {
                 return NotFound(ex.Message);
             }
- 
         }
 
-        [HttpPost("EditTheater")]
-        public async Task<IActionResult> EditTheater (Theater theater)
-        {
-            var created = await _service.Edit(theater);
-            if (!created)
-                return NotFound();
-
-            return Ok(theater);
-        }
-
-        [HttpPut("Update")]
+        [HttpPut("UpdateTheater")]
         public async Task<IActionResult> UpdateTheater(Theater theater)
         {
-            var updated = await _service.Update(theater);
-            if (!updated)
-                return NotFound();
+            try
+            {
+                var updated = await _service.Update(theater);
+                if (!updated)
+                    return NotFound();
 
-            return Ok(theater);
+                return Ok(theater);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+
         }
     }
 }

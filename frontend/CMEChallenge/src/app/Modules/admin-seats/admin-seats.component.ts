@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Plays, PlaysService } from 'src/app/Core/plays.service';
 import { Seat, SeatService } from 'src/app/Core/seat.service';
 import { ToastService } from 'src/app/Core/toast.service';
 
@@ -12,13 +13,16 @@ export class AdminSeatsComponent implements OnInit {
 
   GetAllSeats = new Subscription();
   data: Seat[] = [];
+  playsList : Plays[] =[]
 
   constructor(
     private seats: SeatService,
     private toastr : ToastService,
+    private plays : PlaysService
   ) { }
 
   ngOnInit(): void {
+    this.GetAllPlays()
     this.fetchData()
   }
 
@@ -46,16 +50,21 @@ export class AdminSeatsComponent implements OnInit {
   }
 
   Edit(seatObj: Seat) {
-
-    this.seats.EditSeat(seatObj).subscribe((result) => {
-      if (result != null) {
-        console.log("Seat Done")
-        this.toastr.showSuccess("Succefully added!")
-        this.data.splice(this.data.indexOf(seatObj), 1);
-        const newEntry: any = result;
-        this.data.unshift(newEntry);
-      }
-    });
+    if(seatObj.seatId){
+      this.seats.UpdateSeat(seatObj).subscribe(d=>{
+        this.toastr.showSuccess("Updated")
+      })
+    }else{
+      this.seats.EditSeat(seatObj).subscribe((result) => {
+        if (result != null) {
+          console.log("Seat Done")
+          this.toastr.showSuccess("Succefully added!")
+          this.data.splice(this.data.indexOf(seatObj), 1);
+          const newEntry: any = result;
+          this.data.unshift(newEntry);
+        }
+      });
+    }
   }
 
   Delete(seat: Seat) {
@@ -66,5 +75,11 @@ export class AdminSeatsComponent implements OnInit {
         this.toastr.showSuccess("Succefully Deleted!")
       });
     }
+  }
+
+  GetAllPlays(){
+    this.plays.GetAll().subscribe(d=>{
+      this.playsList = d
+    })
   }
 }

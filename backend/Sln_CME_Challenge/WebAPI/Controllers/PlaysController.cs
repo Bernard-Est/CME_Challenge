@@ -86,14 +86,22 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpPut("Update")]
+        [HttpPut("UpdatePlays")]
         public async Task<IActionResult> UpdatePlay(Play play)
         {
-            var updated = await _service.Update(play);
-            if (!updated)
-                return NotFound();
+            try
+            {
+                var updated = await _service.Update(play);
+                if (!updated)
+                    return NotFound();
 
-            return Ok(play);
+                return Ok(play);
+            }
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+
         }
     }
 }

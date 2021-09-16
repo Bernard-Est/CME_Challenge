@@ -47,7 +47,6 @@ export class AdminPlaysComponent implements OnInit {
   }
 
   AddEntry() {
-    debugger
     if (this.data !== undefined) {
       // if (this.data.filter((e) => e.playsId).length > 0) {
       //   return;
@@ -59,16 +58,21 @@ export class AdminPlaysComponent implements OnInit {
   }
 
   Edit(playObj: Plays) {
-
-    this.plays.EditPlays(playObj).subscribe((result) => {
-      if (result != null) {
-        console.log("Play Done")
-        this.toastr.showSuccess("Succefully added!")
-        this.data.splice(this.data.indexOf(playObj), 1);
-        const newEntry: any = result;
-        this.data.unshift(newEntry);
-      }
-    });
+    if(playObj.playsId){
+      this.plays.UpdatePlays(playObj).subscribe(d=>{
+        this.toastr.showSuccess("Updated")
+      })
+    }else{
+      this.plays.EditPlays(playObj).subscribe((result) => {
+        if (result != null) {
+          console.log("Play Done")
+          this.toastr.showSuccess("Succefully added!")
+          this.data.splice(this.data.indexOf(playObj), 1);
+          const newEntry: any = result;
+          this.data.unshift(newEntry);
+        }
+      });
+    }
   }
 
   Delete(play: Plays) {

@@ -47,6 +47,13 @@ export class SeatService {
     const params ={"seatId":seatId , "isAvailable":isAvailable}
     return this.api.put<any>(this.url,params, options)
   }
+
+  UpdateSeat(seat: Seat): Observable<Seat> {
+    this.url = this.APIBaseUrl + '/UpdateSeat'
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json'})
+    const options = { headers: headers };
+    return this.api.put<Seat>(this.url,seat, options)
+  }
 }
 
 export class Seat {

@@ -24,8 +24,16 @@ namespace WebAPI.Controllers
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            var list = await _service.GetAll();
-            return Ok(list);
+            try
+            {
+                var list = await _service.GetAll();
+                return Ok(list);
+            }
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+
         }
 
 
@@ -52,30 +60,52 @@ namespace WebAPI.Controllers
         [HttpPost("EditSeat")]
         public async Task<IActionResult> EditSeat(Seat seat)
         {
-            var created = await _service.Edit(seat);
-            if (!created)
-                return NotFound();
+            try
+            {
+                var created = await _service.Edit(seat);
+                if (!created)
+                    return NotFound();
 
-            return Ok(seat);
+                return Ok(seat);
+            }
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+
         }
 
-        [HttpPut("Update")]
+        [HttpPut("UpdateSeat")]
         public async Task<IActionResult> UpdateSeat(Seat seat)
         {
-            var updated = await _service.Update(seat);
-            if (!updated)
-                return NotFound();
-
-            return Ok(seat);
+            try
+            {
+                var updated = await _service.Update(seat);
+                if (!updated)
+                    return NotFound();
+                return Ok(seat);
+            }
+            catch (Exception ex) 
+            { 
+                return NotFound(ex.Message); 
+            }
         }
         [HttpPut("UpdateSeatAvailibility")]
         public async Task<IActionResult> UpdateSeatAvailibility(UpdateSeatAvailibilityParams param)
         {
-            var updated = await _service.UpdateSeatAvailibility(param.seatId , param.isAvailable);
-            if (!updated)
-                return NotFound();
+            try
+            {
+                var updated = await _service.UpdateSeatAvailibility(param.seatId, param.isAvailable);
+                if (!updated)
+                    return NotFound();
 
-            return Ok();
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+
         }
 
         [HttpGet("GetByPlaysId/{playsId}")]

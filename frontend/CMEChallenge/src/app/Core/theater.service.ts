@@ -34,10 +34,17 @@ export class TheaterService {
     const options = { headers: headers };
     return this.api.get<Theater[]>(this.url, options)
   }
+
+  UpdateTheater(theater: Theater): Observable<Theater> {
+    this.url = this.APIBaseUrl + '/UpdateTheater'
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json'})
+    const options = { headers: headers };
+    return this.api.put<Theater>(this.url,theater, options)
+  }
 }
 
 export class Theater {
-  TheaterId!: number;
+  theaterId!: number;
   name!: string;
   nbSeats?: number;
 }

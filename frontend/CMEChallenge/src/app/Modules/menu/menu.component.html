@@ -1,20 +1,23 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col col-md-4 menu_entry" routerLink="./adminTheater">
-            <i>icon</i>
+            <i class="fas fa-theater-masks"></i>
             <div class='menu_entry_title'>Theater</div>
         </div>
         <div class="col col-md-4 menu_entry" routerLink="./adminPlays">
-            <i>icon</i>
+            <i class="fas fa-film"></i>
             <div class='menu_entry_title'>Plays</div>
         </div>
         <div class="col col-md-4 menu_entry" routerLink="./adminSeats">
-            <i>icon</i>
+            <i class="fas fa-chair"></i>
             <div class='menu_entry_title'>Seats</div>
         </div>
         <div class="col col-md-4 menu_entry" routerLink="./adminReservation">
-            <i>icon</i>
+            <i class="fas fa-calendar-check"></i>
             <div class='menu_entry_title'>Pending Reservation</div>
         </div>
+    </div>
+    <div style="display: flex; justify-content: flex-end;" >
+        <i class="fas fa-3x fa-sign-out-alt" (click)="logout()" style="cursor: pointer;"></i>
     </div>
 </div>
